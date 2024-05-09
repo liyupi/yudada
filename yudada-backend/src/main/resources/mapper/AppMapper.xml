@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yupi.yudada.mapper.AppMapper">
+
+    <resultMap id="BaseResultMap" type="com.yupi.yudada.model.entity.App">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="appName" column="appName" jdbcType="VARCHAR"/>
+            <result property="appDesc" column="appDesc" jdbcType="VARCHAR"/>
+            <result property="appIcon" column="appIcon" jdbcType="VARCHAR"/>
+            <result property="appType" column="appType" jdbcType="TINYINT"/>
+            <result property="scoringStrategy" column="scoringStrategy" jdbcType="TINYINT"/>
+            <result property="reviewStatus" column="reviewStatus" jdbcType="INTEGER"/>
+            <result property="reviewMessage" column="reviewMessage" jdbcType="VARCHAR"/>
+            <result property="reviewerId" column="reviewerId" jdbcType="BIGINT"/>
+            <result property="reviewTime" column="reviewTime" jdbcType="TIMESTAMP"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,appName,appDesc,
+        appIcon,appType,scoringStrategy,
+        reviewStatus,reviewMessage,reviewerId,
+        reviewTime,userId,createTime,
+        updateTime,isDelete
+    </sql>
+</mapper>

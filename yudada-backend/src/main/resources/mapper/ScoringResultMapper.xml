@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yupi.yudada.mapper.ScoringResultMapper">
+
+    <resultMap id="BaseResultMap" type="com.yupi.yudada.model.entity.ScoringResult">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="resultName" column="resultName" jdbcType="VARCHAR"/>
+            <result property="resultDesc" column="resultDesc" jdbcType="VARCHAR"/>
+            <result property="resultPicture" column="resultPicture" jdbcType="VARCHAR"/>
+            <result property="resultProp" column="resultProp" jdbcType="VARCHAR"/>
+            <result property="resultScoreRange" column="resultScoreRange" jdbcType="INTEGER"/>
+            <result property="appId" column="appId" jdbcType="BIGINT"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,resultName,resultDesc,
+        resultPicture,resultProp,resultScoreRange,
+        appId,userId,createTime,
+        updateTime,isDelete
+    </sql>
+</mapper>
