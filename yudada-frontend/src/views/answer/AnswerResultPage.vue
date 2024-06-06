@@ -36,7 +36,7 @@
           </a-space>
         </a-col>
         <a-col flex="320px">
-          <a-image width="100%" :src="data.userAnswerIcon" />
+          <a-image width="100%" :src="data.resultPicture" />
         </a-col>
       </a-row>
     </a-card>
