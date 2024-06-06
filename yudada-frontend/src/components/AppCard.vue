@@ -7,12 +7,12 @@
     <template #cover>
       <div
         :style="{
-          height: '204px',
+          height: '184px',
           overflow: 'hidden',
         }"
       >
         <img
-          :style="{ width: '100%', transform: 'translateY(-20px)' }"
+          :style="{ width: '100%', height: '100%' }"
           :alt="app.appName"
           :src="app.appIcon"
         />

@@ -49,16 +49,15 @@ public class CustomScoreScoringStrategy implements ScoringStrategy {
         List<QuestionContentDTO> questionContent = questionVO.getQuestionContent();
 
         // 遍历题目列表
-        for (QuestionContentDTO questionContentDTO : questionContent) {
-            // 遍历答案列表
-            for (String answer : choices) {
-                // 遍历题目中的选项
-                for (QuestionContentDTO.Option option : questionContentDTO.getOptions()) {
-                    // 如果答案和选项的key匹配
-                    if (option.getKey().equals(answer)) {
-                        int score = Optional.of(option.getScore()).orElse(0);
-                        totalScore += score;
-                    }
+        for (int i = 0; i < questionContent.size(); i++) {
+            QuestionContentDTO questionContentDTO = questionContent.get(i);
+            String answer = choices.get(i);
+            // 遍历题目中的选项
+            for (QuestionContentDTO.Option option : questionContentDTO.getOptions()) {
+                // 如果答案和选项的key匹配
+                if (option.getKey().equals(answer)) {
+                    int score = Optional.of(option.getScore()).orElse(0);
+                    totalScore += score;
                 }
             }
         }

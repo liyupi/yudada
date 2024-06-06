@@ -2,7 +2,6 @@ package com.yupi.yudada.scoring;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.benmanes.caffeine.cache.Cache;
@@ -12,12 +11,9 @@ import com.yupi.yudada.model.dto.question.QuestionAnswerDTO;
 import com.yupi.yudada.model.dto.question.QuestionContentDTO;
 import com.yupi.yudada.model.entity.App;
 import com.yupi.yudada.model.entity.Question;
-import com.yupi.yudada.model.entity.User;
 import com.yupi.yudada.model.entity.UserAnswer;
 import com.yupi.yudada.model.vo.QuestionVO;
 import com.yupi.yudada.service.QuestionService;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 

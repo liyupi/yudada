@@ -40,6 +40,8 @@ import { REVIEW_STATUS_ENUM } from "@/constant/app";
 const initSearchParams = {
   current: 1,
   pageSize: 12,
+  sortOrder: "descend",
+  sortField: "createTime",
 };
 
 const searchParams = ref<API.AppQueryRequest>({
@@ -89,8 +91,8 @@ watchEffect(() => {
 }
 
 .searchBar {
-  text-align: center;
   margin-bottom: 28px;
+  text-align: center;
 }
 
 .list-demo-action-layout .image-area {
