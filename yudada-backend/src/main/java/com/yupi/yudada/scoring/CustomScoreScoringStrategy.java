@@ -2,6 +2,8 @@ package com.yupi.yudada.scoring;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yupi.yudada.common.ErrorCode;
+import com.yupi.yudada.exception.BusinessException;
 import com.yupi.yudada.model.dto.question.QuestionContentDTO;
 import com.yupi.yudada.model.entity.App;
 import com.yupi.yudada.model.entity.Question;
@@ -13,7 +15,9 @@ import com.yupi.yudada.service.ScoringResultService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 自定义打分类应用评分策略
@@ -47,19 +51,16 @@ public class CustomScoreScoringStrategy implements ScoringStrategy {
         int totalScore = 0;
         QuestionVO questionVO = QuestionVO.objToVo(question);
         List<QuestionContentDTO> questionContent = questionVO.getQuestionContent();
-
+        // 校验数量
+        if (questionContent.size() != choices.size()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "题目和用户答案数量不一致");
+        }
         // 遍历题目列表
         for (int i = 0; i < questionContent.size(); i++) {
-            QuestionContentDTO questionContentDTO = questionContent.get(i);
-            String answer = choices.get(i);
-            // 遍历题目中的选项
-            for (QuestionContentDTO.Option option : questionContentDTO.getOptions()) {
-                // 如果答案和选项的key匹配
-                if (option.getKey().equals(answer)) {
-                    int score = Optional.of(option.getScore()).orElse(0);
-                    totalScore += score;
-                }
-            }
+            Map<String, Integer> resultMap = questionContent.get(i).getOptions().stream()
+                    .collect(Collectors.toMap(QuestionContentDTO.Option::getKey, QuestionContentDTO.Option::getScore));
+            Integer score = Optional.ofNullable(resultMap.get(choices.get(i))).orElse(0);
+            totalScore += score;
         }
 
         // 3. 遍历得分结果，找到第一个用户分数大于得分范围的结果，作为最终结果
